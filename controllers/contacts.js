@@ -1,19 +1,10 @@
-const Joi = require("joi");
 const Contact = require("../models/contact.js");
-
 const { HttpError } = require("../helpers/index");
 const ctrlWrapper = require("../helpers/ctrlWrapper");
-
-const schema = Joi.object({
-  name: Joi.string().min(2).max(30).required(),
-  email: Joi.string().email().required(),
-  phone: Joi.string().required(),
-  favorite: Joi.boolean(),
-});
-
-const updateFavoriteSchema = Joi.object({
-  favorite: Joi.boolean().required(),
-});
+const {
+  contactSchema,
+  updateFavoriteSchema,
+} = require("../schemas/contact-schemas.js");
 
 const getAllContacts = async (req, res) => {
   const result = await Contact.find();
@@ -30,7 +21,7 @@ const getById = async (req, res) => {
 };
 
 const addContact = async (req, res) => {
-  const { error } = schema.validate(req.body);
+  const { error } = contactSchema.validate(req.body);
   if (error) {
     throw HttpError(400, "Missing required name field");
   }
@@ -50,7 +41,7 @@ const deleteContact = async (req, res) => {
 };
 
 const updateById = async (req, res) => {
-  const { error } = schema.validate(req.body);
+  const { error } = contactSchema.validate(req.body);
   if (error) {
     throw HttpError(400, "Missing fields");
   }
