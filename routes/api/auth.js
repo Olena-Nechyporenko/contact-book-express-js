@@ -1,6 +1,4 @@
 const express = require("express");
-const multer = require("multer");
-const path = require("path");
 const { validateBody } = require("../../decorators/index");
 const {
   registerSchema,
@@ -8,26 +6,10 @@ const {
   updateSubscription,
 } = require("../../schemas/user-schemas");
 const userController = require("../../controllers/auth");
-const { authenticate } = require("../../middlewares/index");
+const { authenticate, upload } = require("../../middlewares/index");
 const router = express.Router();
 
-const tempDir = path.join(__dirname, "../../temp");
-const multerConfig = multer.diskStorage({
-  destination: tempDir,
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({
-  storage: multerConfig,
-});
-
-router.post(
-  "/register",
-  upload.single("avatar"),
-  validateBody(registerSchema),
-  userController.register
-);
+router.post("/register", validateBody(registerSchema), userController.register);
 
 router.post("/login", validateBody(loginSchema), userController.login);
 
@@ -40,6 +22,13 @@ router.patch(
   authenticate,
   validateBody(updateSubscription),
   userController.updateSubscription
+);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  userController.updateAvatar
 );
 
 module.exports = router;
