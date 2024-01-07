@@ -22,7 +22,7 @@ const loginSchema = Joi.object({
     "string.pattern.base": "Email or password is wrong",
   }),
   password: Joi.string().min(6).required().messages({
-    "any.required": "Missing 'phone' field",
+    "any.required": "Missing 'password' field",
     "string.empty": `"password" cannot be an empty field`,
     "string.pattern.base": "Email or password is wrong",
   }),

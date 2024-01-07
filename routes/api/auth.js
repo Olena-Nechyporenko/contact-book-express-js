@@ -7,6 +7,7 @@ const {
 } = require("../../schemas/user-schemas");
 const userController = require("../../controllers/auth");
 const { authenticate, upload } = require("../../middlewares/index");
+
 const router = express.Router();
 
 router.post("/register", validateBody(registerSchema), userController.register);
