@@ -1,31 +1,44 @@
-## GoIT Node.js Course Template Homework
+# Contact Book Backend
 
-Виконайте форк цього репозиторію для виконання домашніх завдань (2-6)
-Форк створить репозиторій на вашому http://github.com
+## Features
 
-Додайте ментора до колаборації
+1. User Registration and Authentication
+2. User avatar replacement
+3. Adding, deleting, and editing contacts
+4. Adding contacts to the "Favorites" section
 
-Для кожної домашньої роботи створюйте свою гілку.
+## Technologies Used
 
-- hw02
-- hw03
-- hw04
-- hw05
-- hw06
+The project is developed using the following technologies:
 
-Кожна нова гілка для др повинна робитися з master
+- [Node.js](https://nodejs.org/): Used for executing JavaScript on the server side.
+- [Express.js](https://expressjs.com/): Web framework for Node.js, facilitating the development of web applications and APIs.
+- [Mongoose](https://mongoosejs.com/): Library for modeling MongoDB objects in Node.js.
+- [MongoDB](https://www.mongodb.com/): NoSQL database used for storing and managing data.
+- [JSONWebToken (JWT)](https://jwt.io/): Used for secure authentication and data exchange between parties.
+- [Postman](https://www.postman.com/): Used for testing and documenting APIs.
 
-Після того, як ви закінчили виконувати домашнє завдання у своїй гілці, необхідно зробити пулл-реквест (PR). Потім додати ментора для рев'ю коду. Тільки після того, як ментор заапрувить PR, ви можете виконати мердж гілки з домашнім завданням у майстер.
+## Getting Started
 
-Уважно читайте коментарі ментора. Виправте зауваження та зробіть коміт у гілці з домашнім завданням. Зміни підтягнуться у PR автоматично після того, як ви відправите коміт з виправленнями на github
-Після виправлення знову додайте ментора на рев'ю коду.
+### 1. Clone the Repository
 
-- При здачі домашньої роботи є посилання на PR
-- JS-код чистий та зрозумілий, для форматування використовується Prettier
+```bash
+git clone https://github.com/Olena-Nechyporenko/contact-book-express-js.git
+```
 
-### Команди:
+### 2. Install Dependencies
 
-- `npm start` &mdash; старт сервера в режимі production
-- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
-- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
-- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
+Navigate to the project directory and install the required dependencies.
+
+```bash
+cd [project_directory]
+npm install
+```
+
+### 3. Start the Development Server
+
+After installing the dependencies, start the development server.
+
+```bash
+npm run start:dev
+```
