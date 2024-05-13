@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { nanoid } = require("nanoid");
 const dotenv = require("dotenv");
 const gravatar = require("gravatar");
 const path = require("path");
@@ -28,16 +27,21 @@ const register = async (req, res) => {
 
   const avatarURL = gravatar.url(email);
 
-  const verificationToken = nanoid();
-
   const newUser = await User.create({
     ...req.body,
     password: hashPassword,
     avatarURL,
-    verificationToken,
   });
 
+  const payload = {
+    id: newUser._id,
+  };
+  const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
+
+  await User.findByIdAndUpdate(newUser._id, { token });
+
   res.status(201).json({
+    token,
     email: newUser.email,
     subscription: "starter",
   });
